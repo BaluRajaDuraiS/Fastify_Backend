@@ -11,7 +11,7 @@ exports.userRegister = async (req, reply) => {
   try {
     const checkValidationError = validate(req.body);
     if (checkValidationError)
-      return reply.send({ status: "error", message: checkValidationError });
+      return reply.send({ status: "error", error: checkValidationError.err });
     const user = await User.findOne({ email: req.body.email });
     if (user)
       return reply.send({
